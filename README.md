@@ -40,6 +40,7 @@ This application is an Express.js API that uses Sequelize to interact with a MyS
 ## Technologies Used
 - Node.js
 - Sequelize
+- MySQL2
 - DotENV
 
 ## Live Demo
