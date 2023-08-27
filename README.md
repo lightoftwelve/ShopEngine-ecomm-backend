@@ -45,6 +45,7 @@ This application is an Express.js API that uses Sequelize to interact with a MyS
 - DotENV
 
 ## Live Demo
+// Not live yet
 Check out the live version of this project [here](https://lightoftwelve.github.io/ShopEngine-ecomm-backend).
 
 ## Credits
