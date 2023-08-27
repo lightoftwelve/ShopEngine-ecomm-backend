@@ -1,7 +1,6 @@
 const router = require('express').Router();
 const { Category, Product } = require('../../models');
-
-// The `/api/categories` endpoint
+const notFound = require('../../middleware/notFound');
 
 router.get('/', async (req, res) => {
   try {
@@ -10,8 +9,7 @@ router.get('/', async (req, res) => {
     });
     res.json(categories);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    next(error);
   }
 });
 
@@ -21,12 +19,11 @@ router.get('/:id', async (req, res) => {
       include: [Product],
     });
     if (!category) {
-      return res.status(404).json({ message: 'No category found with this id!' });
+      return next(notFound('No category found with this id!'));;
     }
     res.json(category);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    next(error);
   }
 });
 
@@ -35,8 +32,7 @@ router.post('/', async (req, res) => {
     const newCategory = await Category.create(req.body);
     res.json(newCategory);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    next(error);
   }
 });
 
@@ -48,12 +44,11 @@ router.put('/:id', async (req, res) => {
       },
     });
     if (!updatedCategory[0]) {
-      return res.status(404).json({ message: 'No category found with this id!' });
+      return next(notFound('No category found with this id!'));
     }
     res.json(updatedCategory);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    next(error);
   }
 });
 
@@ -65,13 +60,11 @@ router.delete('/:id', async (req, res) => {
       },
     });
     if (!deletedCategory) {
-      res.status(404).json({ message: 'No category found with this id!' });
-      return;
+      return next(notFound('No category found with this id!'));
     }
     res.json(deletedCategory);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Internal Server Error' });
+    next(error);
   }
 });
 
