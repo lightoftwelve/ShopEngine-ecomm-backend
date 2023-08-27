@@ -18,7 +18,7 @@ router.get('/', async (req, res, next) => {
 });
 
 // get one product
-router.get('/:id', async (req, res) => {
+router.get('/:id', async (req, res, next) => {
   try {
     const product = await Product.findByPk(req.params.id, {
       include: [Category, {
@@ -36,7 +36,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // create new product
-router.post('/', async (req, res) => {
+router.post('/', async (req, res, next) => {
   try {
     const product = await Product.create(req.body);
 
@@ -57,7 +57,7 @@ router.post('/', async (req, res) => {
 });
 
 // update product
-router.put('/:id', async (req, res) => {
+router.put('/:id', async (req, res, next) => {
   try {
     const product = await Product.update(req.body, {
       where: {
@@ -86,7 +86,8 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-router.delete('/:id', async (req, res) => {
+// delete one product by id
+router.delete('/:id', async (req, res, next) => {
   try {
     const deletedProduct = await Product.destroy({
       where: {
@@ -105,7 +106,6 @@ router.delete('/:id', async (req, res) => {
 module.exports = router;
 
 // Starter Code:
-
 // const router = require('express').Router();
 // const { Product, Category, Tag, ProductTag } = require('../../models');
 // // get all products
