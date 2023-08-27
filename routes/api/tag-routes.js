@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Tag, Product, ProductTag } = require('../../models');
 const notFound = require('../../middleware/notFound');
 
-// GET all tags with their associated products
+// GET all tags along with their associated products
 router.get('/', async (req, res, next) => {
   try {
     const tags = await Tag.findAll({
@@ -20,7 +20,7 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-// get one tag
+// GET a single tag by its ID along with its associated products
 router.get('/:id', async (req, res, next) => {
   try {
     const tag = await Tag.findByPk(req.params.id, {
@@ -41,7 +41,7 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-// Create a new tag
+// POST a new tag
 router.post('/', async (req, res, next) => {
   try {
     const newTag = await Tag.create(req.body);
@@ -51,7 +51,7 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-// Update a tag by its id
+// PUT (update) a tag by its ID
 router.put('/:id', async (req, res, next) => {
   try {
     const updatedTag = await Tag.update(req.body, {
@@ -68,7 +68,7 @@ router.put('/:id', async (req, res, next) => {
   }
 });
 
-// Delete a tag by its id
+// DELETE a tag by its ID
 router.delete('/:id', async (req, res, next) => {
   try {
     const deletedTag = await Tag.destroy({

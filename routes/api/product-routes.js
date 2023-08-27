@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Product, Category, Tag, ProductTag } = require('../../models');
 const notFound = require('../../middleware/notFound');
 
-// get all products
+// GET all products along with their associated categories and tags
 router.get('/', async (req, res, next) => {
   try {
     const products = await Product.findAll({
@@ -17,7 +17,7 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-// get one product
+// GET a single product by its ID along with its associated category and tags
 router.get('/:id', async (req, res, next) => {
   try {
     const product = await Product.findByPk(req.params.id, {
@@ -35,7 +35,7 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-// create new product
+// POST a new product. If the product has associated tags, create pairings in the ProductTag model
 router.post('/', async (req, res, next) => {
   try {
     const product = await Product.create(req.body);
@@ -56,7 +56,7 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-// update product
+// PUT (update) a product by its ID. Also, update its associated tags.
 router.put('/:id', async (req, res, next) => {
   try {
     const product = await Product.update(req.body, {
@@ -86,7 +86,7 @@ router.put('/:id', async (req, res, next) => {
   }
 });
 
-// delete one product by id
+// DELETE a product by its ID
 router.delete('/:id', async (req, res, next) => {
   try {
     const deletedProduct = await Product.destroy({

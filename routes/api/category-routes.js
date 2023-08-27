@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { Category, Product } = require('../../models');
 const notFound = require('../../middleware/notFound');
 
+// GET all categories and their associated products
 router.get('/', async (req, res, next) => {
   try {
     const categories = await Category.findAll({
@@ -13,13 +14,14 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+// GET a single category by its ID and its associated products
 router.get('/:id', async (req, res, next) => {
   try {
     const category = await Category.findByPk(req.params.id, {
       include: [Product],
     });
     if (!category) {
-      return next(notFound('No category found with this id!'));;
+      return next(notFound('No category found with this id!'));
     }
     res.json(category);
   } catch (error) {
@@ -27,6 +29,7 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
+// POST a new category
 router.post('/', async (req, res, next) => {
   try {
     const newCategory = await Category.create(req.body);
@@ -36,6 +39,7 @@ router.post('/', async (req, res, next) => {
   }
 });
 
+// PUT (update) a category by its ID
 router.put('/:id', async (req, res, next) => {
   try {
     const updatedCategory = await Category.update(req.body, {
@@ -52,6 +56,7 @@ router.put('/:id', async (req, res, next) => {
   }
 });
 
+// DELETE a category by its ID
 router.delete('/:id', async (req, res, next) => {
   try {
     const deletedCategory = await Category.destroy({
