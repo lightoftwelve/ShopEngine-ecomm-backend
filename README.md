@@ -35,9 +35,7 @@ This application is an Express.js API that uses Sequelize to interact with a MyS
     ```
 
 ## Screenshots
-![Screenshot](/images/)
-![Screenshot](/images/)
-![Screenshot](/images/)
+![A screenshot of the app routes in Insomnia](/images/shopengine-ecomm-backend-screenshot.png)
 
 ## Technologies Used
 - Node.js
@@ -45,8 +43,7 @@ This application is an Express.js API that uses Sequelize to interact with a MyS
 - DotENV
 
 ## Live Demo
-// Not live yet
-Check out the live version of this project [here](https://lightoftwelve.github.io/ShopEngine-ecomm-backend).
+Watch the demo [here](https://drive.google.com/file/d/15sNWDmaryInAx1SemJFRmEZwlHhU6ulw/view).
 
 ## Credits
 This project was accepted and completed as part of the UofT SCS Coding Boot Camp Online: Fullstack Flex PT course through the University of Toronto. The contents of the seeds folder, config folder, and pieces of other files as marked in the code were created by edX Boot Camps LLC. and has been modified for the purpose of this assignment. Otherwise, this project was independently developed by myself, Victoria Alawi.
